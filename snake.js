@@ -1,24 +1,29 @@
+class Snake {
+    constructor(x, y, color, width, height, scale){
+        this.x = x; 
+        this.y = y; 
+        this.scale = scale; 
+        this.dx = 1;
+        this.dy = 0; 
 
-function Snake(x, y, color, width, height, scale){
-    this.x = x; 
-    this.y = y; 
-    this.scale = scale; 
-    this.dx = 1;
-    this.dy = 0; 
-
-    this.body = []; 
-    this.body_length = 2; 
-   
-    this.eats = function (food){
+        this.body = []; 
+        this.body_length = 2; 
+    
+        this.color = color; 
+        this.width = width; 
+        this.height = height; 
+    } 
+    eats(food){
         if (this.x == food.x && this.y == food.y) {
             return true;
         }
         return false;
     }
-    this.grow = function (){
+
+    grow(){
         this.body_length++;
     }
-    this.hitsItself = function () {
+    hitsItself() {
         let values = [];
         let x = this.x; 
         let y = this.y;
@@ -33,7 +38,7 @@ function Snake(x, y, color, width, height, scale){
         return false;
     }; 
 
-    this.update = function () {
+    update() {
         this.body.push ({x: this.x, y: this.y});
         if (this.body.length > this.body_length) {
             this.body.shift();
@@ -42,20 +47,20 @@ function Snake(x, y, color, width, height, scale){
         this.y += this.dy * this.scale; 
 
         if (this.x < 0) {
-            this.x = width; 
-        } else if (this.x >= width) {
+            this.x = this.width; 
+        } else if (this.x >= this.width) {
             this.x = 0;
         } else if (this.y < 0) {
-            this.y = height; 
-        } else if (this.y >= height) {
+            this.y = this.height; 
+        } else if (this.y >= this.height) {
             this.y = 0;
         }
 
     }; 
 
-    this.draw = function (ctx){
+    draw(ctx){
         ctx.beginPath();
-        ctx.fillStyle = color;
+        ctx.fillStyle = this.color;
         let scale = this.scale; 
         this.body.forEach(function (pos) {
             ctx.rect(pos.x, pos.y, scale, scale); 
@@ -65,28 +70,28 @@ function Snake(x, y, color, width, height, scale){
         ctx.closePath(); 
     };
 
-    this.up = function () {
+    up() {
         if (this.dy != 1) {
             this.dx = 0; 
             this.dy = -1; 
         }
     }
 
-    this.down = function () {
+    down() {
         if (this.dy != -1) {
             this.dx = 0; 
             this.dy = 1; 
         }
     }
 
-    this.left = function () {
+    left() {
         if (this.dx != 1) {
             this.dx = -1; 
             this.dy = 0; 
         }
     }
 
-    this.right = function (){
+    right(){
         if (this.dx != -1) {
             this.dx = 1; 
             this.dy = 0;
