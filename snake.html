@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <title> Gamedev Canvas Workshop </title> 
+        <style> 
+          * { 
+              padding: 0; 
+              margin: 0; 
+          } 
+          #viewport {
+              position: relative; 
+          }
+
+          #viewport canvas {
+              position: absolute;
+          }
+
+          #background {
+              background: #010101;
+              display: block;
+              margin: 0 auto;
+              border: 1px solid black;
+          }
+        </style>
+    </head>
+    <body>
+        <div id="viewport"> 
+            <canvas id="background" width="600" height="600"></canvas>
+            <canvas id="myCanvas" width="600" height="600"></canvas>
+        </div> 
+        <audio src="assets/bensound-endlessmotion.mp3" autoplay loop></audio>
+        <audio id="chomp-effect"  src="assets/chomp.mp3"></audio> 
+        <script src="food.js"></script> 
+        <script src="snake.js"></script> 
+        <script src="game.js"></script> 
+    </body>
+</html> 
